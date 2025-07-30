@@ -18,6 +18,17 @@ def configurar_expresion():
         if simb in expr_py:
             expr_py = expr_py.replace(simb, mapeado[simb])
             
+    #Extraer variables
+    #vars = variables     
+    vars = []
+    for caracter in expr:
+        # Chequear si es letra
+        if (('A' <= caracter <= 'Z') or ('a' <= caracter <= 'z')) and caracter not in vars:
+            vars.append(caracter)
+    #Generar un error si se ingresan más de 10 variables
+    if len(vars) > 10:
+        raise ValueError("Máximo 10 variables permitidos.")
+            
 #Menú           
 def menu():
     configurar_expresion()
