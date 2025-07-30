@@ -20,30 +20,40 @@ def configurar_expresion():
             expr_py = expr_py.replace(simb, mapeado[simb])
             
     #Extraer variables
-    #vars = variables     
-    vars = []
+    #valores = variables     
+    valores = []
     for caracter in expr:
         # Chequear si es letra
-        if (("A" <= caracter <= "Z") or ("a" <= caracter <= "z")) and caracter not in vars:
-            vars.append(caracter)
+        if (("A" <= caracter <= "Z") or ("a" <= caracter <= "z")) and caracter not in valores:
+            valores.append(caracter)
     #Generar un error si se ingresan más de 10 variables
-    if len(vars) > 10:
+    if len(valores) > 10:
         raise ValueError("Máximo 10 variables permitidos.")
     
     #Calcular ancho de columna según la longitud de las variables
     mayor_long = 0
-    for v in vars:
+    for v in valores:
         if len(v) > mayor_long:
             mayor_long = len(v)
     ancho_columna = mayor_long + 2 if mayor_long + 2 > 10 else 10
 
     #Imprimir encabezado
     encabezado = ''
-    for var in vars:
+    for var in valores:
         encabezado += format(var, f"<{ancho_columna}") + " | "
     encabezado += format("RESULTADO", f"<{ancho_columna}")
     print("\n" + encabezado)
     print("-" * len(encabezado))
+    
+def tabla_de_verdad():
+    #Utilizando itertools para iterar todas las combinaciones psobiles de True/False con una longitud igual a len(valores)
+    for combinacion in itertools.product([True, False], repeat=len(valores)):
+        valores = {}
+        #Construcción del diccionario "valores" mapeando cada variable a su valor booleano
+        for i in range(len(valores)):
+            nombre = valores[i]
+            valor = combinacion[i]
+            valores[nombre] = valor
             
 #Menú           
 def menu():
