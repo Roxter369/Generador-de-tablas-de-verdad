@@ -13,7 +13,7 @@ operadores = ['<->', '->', '&&', '||', '!']
 
 def configurar_expresion():
     global expr, expr_py, valores, ancho_columna
-    expr = input("Ingrese expresión lógica (&&, ||, !, ->, <->): ").strip()
+    expr = input("Expresión lógica").strip()
     # Reemplazar símbolos en el orden definido
     expr_py = expr
     for simb in operadores:
@@ -80,7 +80,7 @@ def tabla_de_verdad():
 def menu():
     configurar_expresion()
     while True:
-        opcion = input("\n¿Generar tabla de verdad con esta expresión? (S/N) ").strip().lower()
+        opcion = input(F"\n{pow(2,len(valores))} combinaciones").strip().lower()
         if opcion == "s":
             encabezado()
             tabla_de_verdad()
@@ -88,7 +88,7 @@ def menu():
         elif opcion == "n":
             configurar_expresion()
         else:
-            print("Opción incorrecta, ingrese S o N.")
+            print("Opción incorrecta")
 
 # Ejecutar menú
 if __name__ == '__main__':

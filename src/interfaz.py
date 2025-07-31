@@ -60,10 +60,10 @@ root.geometry("720x600")
 input_frame = tk.Frame(root)
 input_frame.pack(padx=10, pady=10, fill="x")
 
-label_instruccion = tk.Label(input_frame, text="Expresión Lógica:")
+label_instruccion = tk.Label(input_frame, text="Expresión Lógica (&&, ||, !, ->, <->):", font=("Arial", 20))
 label_instruccion.pack(side="left", padx=(0, 5))
 
-entry_expresion = tk.Entry(input_frame, width=40, font=("Arial", 10))
+entry_expresion = tk.Entry(input_frame, width=40, font=("Arial", 20))
 entry_expresion.pack(side="left", fill="x", expand=True)
 entry_expresion.bind("<Return>", lambda event: iniciar())
 
@@ -76,7 +76,7 @@ output_frame.pack(padx=10, pady=(0, 10), fill="both", expand=True)
 output_text = scrolledtext.ScrolledText(output_frame, wrap="none", state="disabled", bg="#2b2b2b", fg="#f8f8f2")
 output_text.pack(fill="both", expand=True)
 
-mono_font = font.Font(family="Courier New", size=12)
+mono_font = font.Font(family="Courier New", size=20)
 output_text.configure(font=mono_font)
 
 if __name__ == '__main__':
