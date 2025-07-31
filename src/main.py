@@ -12,6 +12,7 @@ mapeado = {
 operadores = ['<->', '->', '&&', '||', '!']
 
 def configurar_expresion():
+    global expr, expr_py, valores, ancho_columna
     expr = input("Ingrese expresión lógica (&&, ||, !, ->, <->): ").strip()
     # Reemplazar símbolos en el orden definido
     expr_py = expr
@@ -39,8 +40,8 @@ def configurar_expresion():
 
     #Imprimir encabezado
     encabezado = ''
-    for var in valores:
-        encabezado += format(var, f"<{ancho_columna}") + " | "
+    for val in valores:
+        encabezado += format(val, f"<{ancho_columna}") + " | "
     encabezado += format("RESULTADO", f"<{ancho_columna}")
     print("\n" + encabezado)
     print("-" * len(encabezado))
@@ -48,12 +49,20 @@ def configurar_expresion():
 def tabla_de_verdad():
     #Utilizando itertools para iterar todas las combinaciones psobiles de True/False con una longitud igual a len(valores)
     for combinacion in itertools.product([True, False], repeat=len(valores)):
-        valores = {}
+        valores_diccionario = {}
         #Construcción del diccionario "valores" mapeando cada variable a su valor booleano
         for i in range(len(valores)):
             nombre = valores[i]
             valor = combinacion[i]
-            valores[nombre] = valor
+            valores_diccionario[nombre] = valor
+            resultado = eval(expr_py, valores_diccionario)
+            
+            #Imprimir fila
+            fila = ''
+            for v in valores:
+                fila += format(str(valores_diccionario[v]), f"<{ancho_columna}") + " | "
+            fila += format(str(resultado), f"<{ancho_columna}")
+            print(fila)
             
 #Menú           
 def menu():
