@@ -55,14 +55,19 @@ def tabla_de_verdad():
             nombre = valores[i]
             valor = combinacion[i]
             valores_diccionario[nombre] = valor
-            resultado = eval(expr_py, valores_diccionario)
-            
-            #Imprimir fila
-            fila = ''
-            for v in valores:
-                fila += format(str(valores_diccionario[v]), f"<{ancho_columna}") + " | "
-            fila += format(str(resultado), f"<{ancho_columna}")
-            print(fila)
+        #Manejo de excepciones para evitar error al evaluar una expresion
+        try:
+            resultado = eval(expr_py,valores_diccionario)
+        except Exception as e:
+            print(f"Error al evaluar la expresión: {e}")
+            return
+        
+        #Imprimir fila
+        fila = ''
+        for v in valores:
+            fila += format(str(valores_diccionario[v]), f"<{ancho_columna}") + " | "
+        fila += format(str(resultado), f"<{ancho_columna}")
+        print(fila)
             
 #Menú           
 def menu():
@@ -70,6 +75,7 @@ def menu():
     while True:
         opcion = input("\n¿Generar tabla de verdad con esta expresión? (S/N) ").strip().lower()
         if opcion == "s":
+            tabla_de_verdad()
             break
         elif opcion == "n":
             configurar_expresion()
