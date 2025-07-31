@@ -37,7 +37,7 @@ def configurar_expresion():
         if len(v) > mayor_long:
             mayor_long = len(v)
     ancho_columna = mayor_long + 2 if mayor_long + 2 > 10 else 10
-    encabezado()
+
 
     #Imprimir encabezado
 def encabezado():
@@ -49,6 +49,11 @@ def encabezado():
     print("-" * len(encabezado))
     
 def tabla_de_verdad():
+    #Cambiar los True y False por V y F
+    cambio_simbolos = {
+        True: "V",
+        False: "F"
+}
     #Utilizando itertools para iterar todas las combinaciones psobiles de True/False con una longitud igual a len(valores)
     for combinacion in itertools.product([True, False], repeat=len(valores)):
         valores_diccionario = {}
@@ -67,8 +72,8 @@ def tabla_de_verdad():
         #Imprimir fila
         fila = ''
         for v in valores:
-            fila += format(str(valores_diccionario[v]), f"<{ancho_columna}") + " | "
-        fila += format(str(resultado), f"<{ancho_columna}")
+            fila += format(cambio_simbolos[valores_diccionario[v]], f"<{ancho_columna}") + " | "
+        fila += format(cambio_simbolos[resultado], f"<{ancho_columna}")
         print(fila)
             
 #Menú           
