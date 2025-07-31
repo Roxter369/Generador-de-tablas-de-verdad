@@ -37,8 +37,10 @@ def configurar_expresion():
         if len(v) > mayor_long:
             mayor_long = len(v)
     ancho_columna = mayor_long + 2 if mayor_long + 2 > 10 else 10
+    encabezado()
 
     #Imprimir encabezado
+def encabezado():
     encabezado = ''
     for val in valores:
         encabezado += format(val, f"<{ancho_columna}") + " | "
@@ -75,6 +77,7 @@ def menu():
     while True:
         opcion = input("\n¿Generar tabla de verdad con esta expresión? (S/N) ").strip().lower()
         if opcion == "s":
+            encabezado()
             tabla_de_verdad()
             break
         elif opcion == "n":
