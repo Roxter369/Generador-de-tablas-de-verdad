@@ -54,7 +54,7 @@ def tabla_de_verdad():
         True: "V",
         False: "F"
 }
-    #Utilizando itertools para iterar todas las combinaciones psobiles de True/False con una longitud igual a len(valores)
+    #Utilizando itertools para iterar todas la3s combinaciones psobiles de True/False con una longitud igual a len(valores)
     for combinacion in itertools.product([True, False], repeat=len(valores)):
         valores_diccionario = {}
         #Construcción del diccionario "valores" mapeando cada variable a su valor booleano
